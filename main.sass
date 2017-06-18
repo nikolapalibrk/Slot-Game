@@ -1,0 +1,140 @@
+*
+  padding: 0
+  margin: 0
+
+
+.game
+  background-image: url('img/casino.jpg')
+  background-position: center
+  background-size: cover
+  height: 100vh
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+  align-items: center
+#wrap
+  width: 1000px
+  height: 600px
+  border: 3px solid yellow
+  background-color: rgba(255,99,71, .5)
+  overflow: hidden
+  display: flex
+div[class^="column"]
+  width: 200px
+  display: flex
+  flex-direction: column
+  div[class^='logo']
+    width: 200px
+    height: 200px
+    border: 1px solid yellow
+    box-sizing: border-box
+    img
+      width: 100%
+      height: 100%
+.btnDiv
+  display: flex
+  width: 500px
+  justify-content: space-between
+.roll, .infoBtn
+  height: 50px
+  width: 200px
+  background-color: tomato
+  color: yellow
+  border-radius: 10px
+  text-align: center
+  border: 5px solid yellow
+  line-height: 50px
+  cursor: pointer
+  &:hover
+    background-color: darken(tomato, 10)
+
+.animate
+  animation-name: sliding
+  animation-duration: 1.5s
+  animation-fill-mode: both
+  animation-timing-function: ease-in-out
+
+@keyframes sliding
+  0%
+    margin-top: -2000px
+  10%
+    margin-top: -2020px
+  100%
+    margin-top: 0
+
+
+.info
+  height: 100vh
+  width: 100%
+  background-image: url('img/casino.jpg')
+  background-position: center
+  background-size: contain
+  display: flex
+  align-items: center
+  display: none
+  .infoWrap
+    width: 80%
+    margin: 0 auto
+    border-radius: 20px
+    background-color: rgba(10, 95, 138, 0.43)
+    height: 80vh
+    border: 2px solid darkslategray
+    align-items: center
+    h2
+      color: white
+      clear: both
+      width: 300px
+      height: 60px
+      margin: 0 auto
+      background-color: tomato
+      text-align: center
+      line-height: 60px
+      border: 3px solid yellow
+      color: yellow
+      border-radius: 10px
+      cursor: pointer
+      &:hover
+        background-color: coral
+    .fruit
+      width: 15%
+      border-radius: 10px
+      float: left
+      margin-left: 1.2%
+      margin-bottom: 15vh
+      height: 200px
+      border: 2px solid orange
+      p
+        text-align: center
+        color: white
+        padding: 5px
+        font-size: 24px
+        &:first-child
+          margin-top: 15px
+        span
+          color: orangered
+    .lemon
+      background-image: url('img/lemon.png')
+      background-size: cover
+      background-position: center
+    .grape
+      background-image: url('img/grape.png')
+      background-size: contain
+      background-position: center
+    .cherry
+      background-image: url('img/cherry.png')
+      background-size: contain
+      background-position: center
+    .watermelon
+      background-image: url('img/watermelon.png')
+      background-size: contain
+      background-position: center
+    .ananas
+      background-image: url('img/ananas.png')
+      background-size: contain
+      background-position: center
+    .cocktail
+      background-image: url('img/cocktail.png')
+      background-size: contain
+      background-position: center
+.blur
+  filter: blur(5px)
