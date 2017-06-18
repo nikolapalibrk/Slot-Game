@@ -1,14 +1,26 @@
-var imgUrl = ['img/lemon.png', 'img/ananas.png', 'img/watermelon.png', 'img/cherry.png', 'img/cocktail.png', 'img/grape.png', ]
+var line1 = [],
+    line2 = [],
+    line3 = [],
+    line4 = [],
+    line5 = [],
+    allLines = [],
+    imgUrl = ['img/ananas.png','img/ananas.png','img/ananas.png','img/ananas.png',
+    'img/watermelon.png','img/watermelon.png','img/watermelon.png','img/watermelon.png',
+    'img/lemon.png','img/lemon.png','img/lemon.png',
+    'img/grape.png','img/grape.png','img/grape.png',
+    'img/cocktail.png','img/cocktail.png',
+    'img/cherry.png','img/cherry.png',
+    'img/joker.png'
+    ]
 //Kreiranje pocetnog stanja
 jQuery(document).ready(function($) {
-    createSlot($('.column1'));
-    createSlot($('.column2'));
-    createSlot($('.column3'));
-    createSlot($('.column4'));
-    createSlot($('.column5'));
+  $('.column').each(function(index, el) {
+    makeColumn($(this));
+  });
 });
 
-function createSlot(parent) {
+
+function makeColumn(parent) {
         for (var i = 0; i < 3; i++) {
             var rand = Math.floor(Math.random() * imgUrl.length);
             parent.append('<div class="logo"><img src="' + imgUrl[rand] + '"></div>');
@@ -21,41 +33,32 @@ function moveSlot(parent) {
             parent.prepend('<div class="logo"><img src="' + imgUrl[rand] + '"></div>');
         }
         parent.addClass('animate');
-        parent.children().addClass('blur');
         setTimeout(function  () {
           parent.children('.logo:gt(2)').remove();
           parent.removeClass('animate');
-          parent.children().removeClass('blur')
         },1500)
 }
 
-
-
 $('.roll').on('click', function() {
-  var time = 0;
-  for (var i = ; i < 6; i++) {
-    setTimeout(function() {
-      moveSlot($('column' + i));
-    }, time);
-    time += 200;
-  }
 
-  // moveSlot($('.column1'));
-  // setTimeout(function  () {
-  //   moveSlot($('.column2'));
-  // }, 200);
-  //
-  // setTimeout(function  () {
-  //   moveSlot($('.column3'));
-  // }, 400);
-  //
-  // setTimeout(function  () {
-  //   moveSlot($('.column4'));
-  // }, 600);
-  //
-  // setTimeout(function  () {
-  //   moveSlot($('.column5'));
-  // }, 800);
+  moveSlot($('.column1'));
+
+  setTimeout(function  () {
+    moveSlot($('.column2'));
+  }, 200);
+
+  setTimeout(function  () {
+    moveSlot($('.column3'));
+  }, 400);
+
+  setTimeout(function  () {
+    moveSlot($('.column4'));
+  }, 600);
+
+  setTimeout(function  () {
+    moveSlot($('.column5'));
+  }, 800);
+  setTimeout(checkCombination, 2500);
 });
 
 //Screen change
@@ -71,3 +74,36 @@ $('.infoBtn').on('click', function() {
   $('.game').css({
     display: 'None'});
 });
+
+//Kreiranje linija (niz elemenata)
+function checkCombination() {
+  var col = document.getElementsByClassName('column');
+  for (var i = 0; i < 5; i++) {
+    line1.push(col[i].children[0]);
+    line2.push(col[i].children[1]);
+    line3.push(col[i].children[2]);
+  }
+  line4.push(col[0].children[0], col[1].children[1], col[2].children[2], col[3].children[1], col[4].children[0]);
+  line5.push(col[0].children[2], col[1].children[1], col[2].children[0], col[3].children[1], col[4].children[2]);
+  allLines.push(line1, line2, line3, line4, line5);
+  alertWin();
+}
+
+
+function alertWin () {
+  console.log(allLines);
+  for (var i = 0; i < allLines.length; i++) {
+    for (var x = 1; x < allLines[i].length; x++) {
+      if
+      
+      if( (allLines[i][0].children[0].getAttribute('src')) === (allLines[i][x].children[0].getAttribute('src')) ){
+        allLines[i][0].style.backgroundColor = 'red';
+        allLines[i][x].style.backgroundColor = 'red';
+      }
+    }
+  }
+  for (var i = 0; i < allLines.length; i++) {
+    allLines[i].length = 0;
+  }
+  allLines.length = 0;
+}
