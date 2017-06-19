@@ -36,14 +36,16 @@ div[class^="column"]
   width: 500px
   justify-content: space-between
 .roll, .infoBtn
+  box-sizing: border-box
   height: 50px
   width: 200px
+  font-size: 24px
   background-color: tomato
   color: yellow
   border-radius: 10px
   text-align: center
   border: 5px solid yellow
-  line-height: 50px
+  line-height: 44px
   cursor: pointer
   &:hover
     background-color: darken(tomato, 10)
@@ -136,3 +138,19 @@ div[class^="column"]
       background-image: url('img/cocktail.png')
       background-size: contain
       background-position: center
+
+.highlight
+  animation: highlight
+  animation-duration: .5s
+  animation-fill-mode: forwards
+  animation-iteration-count: 1
+  animation-timing-function: ease-in-out
+
+
+@keyframes highlight
+  0%
+    transform: scale(1)
+  50%
+    transform: scale(1.3)
+  100%
+    transform: scale(1)

@@ -11,10 +11,12 @@ var line1 = [],
     'img/cocktail.png','img/cocktail.png',
     'img/cherry.png','img/cherry.png',
     'img/joker.png'
-    ]
+    ],
+    audio = new Audio('spin.mp3');
+
 //Kreiranje pocetnog stanja
 jQuery(document).ready(function($) {
-  $('.column').each(function(index, el) {
+  $('.column').each(function() {
     makeColumn($(this));
   });
 });
@@ -40,7 +42,9 @@ function moveSlot(parent) {
 }
 
 $('.roll').on('click', function() {
-
+  $(this).removeAttr('disabled').css('backgroundColor', 'grey');
+  $(this).attr('disabled', 'disabled');
+  audio.play();
   moveSlot($('.column1'));
 
   setTimeout(function  () {
@@ -49,16 +53,16 @@ $('.roll').on('click', function() {
 
   setTimeout(function  () {
     moveSlot($('.column3'));
-  }, 400);
+  }, 350);
 
   setTimeout(function  () {
     moveSlot($('.column4'));
-  }, 600);
+  }, 500);
 
   setTimeout(function  () {
     moveSlot($('.column5'));
-  }, 800);
-  setTimeout(checkCombination, 2500);
+  }, 650);
+  setTimeout(checkCombination, 2150);
 });
 
 //Screen change
@@ -77,6 +81,7 @@ $('.infoBtn').on('click', function() {
 
 //Kreiranje linija (niz elemenata)
 function checkCombination() {
+  $('.roll').removeAttr('disabled').css('backgroundColor', 'tomato');
   var col = document.getElementsByClassName('column');
   for (var i = 0; i < 5; i++) {
     line1.push(col[i].children[0]);
@@ -89,19 +94,33 @@ function checkCombination() {
   alertWin();
 }
 
-
+//Provera da li su isti i alert
 function alertWin () {
-  console.log(allLines);
+  var winLines = [];
   for (var i = 0; i < allLines.length; i++) {
     for (var x = 1; x < allLines[i].length; x++) {
-      if
-      
-      if( (allLines[i][0].children[0].getAttribute('src')) === (allLines[i][x].children[0].getAttribute('src')) ){
-        allLines[i][0].style.backgroundColor = 'red';
-        allLines[i][x].style.backgroundColor = 'red';
+      if(x === 1){
+        if( allLines[i][0].children[0].getAttribute('src') === allLines[i][x].children[0].getAttribute('src') ){
+          allLines[i][0].style.backgroundColor = 'seagreen';
+          allLines[i][x].style.backgroundColor = 'seagreen';
+          allLines[i][0].classList.add('highlight');
+          allLines[i][x].classList.add('highlight');
+          winLines.push([]);
+          winLines[winLines.length - 1].push(allLines[i][0], allLines[i][x]);
+          console.log(winLines);
+        }
+      }
+      else if
+        ( allLines[i][0].children[0].getAttribute('src') === allLines[i][x].children[0].getAttribute('src') && allLines[i][x-1].children[0].getAttribute('src') === allLines[i][0].children[0].getAttribute('src') && allLines[i][x-1].style.backgroundColor === 'seagreen'){
+          allLines[i][0].style.backgroundColor = 'seagreen';
+          allLines[i][x].style.backgroundColor = 'seagreen';
+          allLines[i][0].classList.add('highlight');
+          allLines[i][x].classList.add('highlight');
+          winLines[winLines.length - 1].push(allLines[i][x]);
       }
     }
   }
+  animateWin(winLines);
   for (var i = 0; i < allLines.length; i++) {
     allLines[i].length = 0;
   }
