@@ -198,9 +198,11 @@ div[class^="column"] div[class^='logo'] img {
     transform: scale(1);
   }
   50% {
+    background-color: seagreen;
     transform: scale(1.3);
   }
   100% {
+    background-color: seagreen;
     transform: scale(1);
   }
 }
