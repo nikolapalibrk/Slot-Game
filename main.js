@@ -107,20 +107,16 @@ function alertWin () {
           allLines[i][x].classList.add('highlight');
           winLines.push([]);
           winLines[winLines.length - 1].push(allLines[i][0], allLines[i][x]);
-          console.log(winLines);
         }
       }
       else if
         ( allLines[i][0].children[0].getAttribute('src') === allLines[i][x].children[0].getAttribute('src') && allLines[i][x-1].children[0].getAttribute('src') === allLines[i][0].children[0].getAttribute('src') && allLines[i][x-1].style.backgroundColor === 'seagreen'){
-          allLines[i][0].style.backgroundColor = 'seagreen';
           allLines[i][x].style.backgroundColor = 'seagreen';
-          allLines[i][0].classList.add('highlight');
           allLines[i][x].classList.add('highlight');
           winLines[winLines.length - 1].push(allLines[i][x]);
       }
     }
   }
-  animateWin(winLines);
   for (var i = 0; i < allLines.length; i++) {
     allLines[i].length = 0;
   }
