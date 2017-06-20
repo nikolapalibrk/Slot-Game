@@ -105,7 +105,6 @@ function alertWin () {
           allLines[i][x].style.backgroundColor = 'seagreen';
           allLines[i][0].classList.add('highlight');
           allLines[i][x].classList.add('highlight');
-          winLines.push([]);
           winLines[winLines.length - 1].push(allLines[i][0], allLines[i][x]);
         }
       }
