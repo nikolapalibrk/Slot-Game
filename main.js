@@ -112,15 +112,13 @@ function checkCombination() {
 
 Array.prototype.allValuesSame = function() {
 
-    for(var i = 1; i < this.length; i++)
-    {
+    for (var i = 1; i < this.length; i++) {
         if(this[i] !== this[0])
             return i;
     }
 
     return i - 1;
 }
-
 
 
 //// Provera da li su isti i alert ///
@@ -130,14 +128,96 @@ function alertWin () {
   for (var i = 0; i < allLinesImg.length; i++) {
     help.push(allLinesImg[i].allValuesSame());
   }
-
   for (var i = 0; i < allLines.length; i++) {
+    if (help[i]>1) {
     for (var x = 0; x < help[i]; x++) {
-      if (help[i] !== 1) {
-        allLines[i][x].classList.add('highlight');
-      }
+          allLines[i][x].classList.add('oboj' + i);
+        }
     }
   }
+  help.length = 0;
+  var firstCom = $('.oboj0');
+  var secCom = $('.oboj1');
+  var thirdCom = $('.oboj2');
+  var fourthCom = $('.oboj3');
+  var fifthCom = $('.oboj4');
+  var arej = [];
+  if(firstCom.length > 0){
+    firstCom.addClass('highlight1');
+  }
+  if(secCom.length > 0){
+    if (firstCom.length > 0) {
+      setTimeout(function  () {
+        secCom.addClass('highlight2')
+      },400)
+    }
+    else {
+      secCom.addClass('highlight2')
+    }
+  }
+
+  if (thirdCom.length > 0) {
+    if (firstCom.length > 0 && secCom.length > 0) {
+      setTimeout(function  () {
+        thirdCom.addClass('highlight3')
+      }, 800)
+    }
+    else if(firstCom.length > 0 || secCom.length > 0){
+      setTimeout(function  () {
+        thirdCom.addClass('highlight3')
+      },400)
+    }
+    else {
+      thirdCom.addClass('highlight3')
+    }
+  }
+
+  if (fourthCom.length > 0) {
+    if (firstCom.length > 0 && secCom.length > 0 && thirdCom.length > 0) {
+      setTimeout(function  () {
+        fourthCom.addClass('highlight4')
+      }, 1200)
+    }
+    else if((firstCom.length > 0 && secCom.length > 0) || (secCom.length > 0 && thirdCom.length > 0) || (firstCom.length > 0 && thirdCom.length > 0)){
+      setTimeout(function  () {
+        fourthCom.addClass('highlight4')
+      },800)
+    }
+    else if(firstCom.length > 0 || secCom.length > 0 || thirdCom.length > 0) {
+      setTimeout(function  () {
+        fourthCom.addClass('highlight4')
+      }, 400)
+    }
+    else {
+      fourthCom.addClass('highlight4')
+    }
+  }
+  if (fifthCom.length > 0) {
+    if (firstCom.length > 0 && secCom.length > 0 && thirdCom.length > 0 && fourthCom.length > 0) {
+      setTimeout(function  () {
+        fifthCom.addClass('highlight5')
+      }, 1600)
+    }
+    else if((firstCom.length > 0 && secCom.length > 0 && thirdCom.length > 0) || (firstCom.length > 0 && secCom.length > 0 && fourthCom.length > 0) || (firstCom.length > 0 && thirdCom.length > 0 && fourthCom.length > 0) || (secCom.length > 0 && thirdCom.length > 0 && fourthCom.length > 0)){
+      setTimeout(function  () {
+        fifthCom.addClass('highlight5')
+      },1200)
+    }
+    else if((firstCom.length > 0 && secCom.length > 0) || (firstCom.length > 0 && thirdCom.length > 0) || (firstCom.length > 0 && fourthCom.length > 0) || (secCom.length > 0 && thirdCom.length > 0) || (secCom.length > 0 && fourthCom.length > 0) || (thirdCom.length > 0 && fourthCom.length > 0)) {
+      setTimeout(function  () {
+        fifthCom.addClass('highlight5')
+      }, 800)
+    }
+    else if(firstCom.length > 0 || secCom.length > 0 || thirdCom.length > 0 || fourthCom.length > 0) {
+      setTimeout(function  () {
+        fifthCom.addClass('highlight5')
+      }, 400)
+    }
+    else {
+      fifthCom.addClass('highlight5')
+    }
+  }
+
   //Brisanje svih array-a
   help.length = 0;
 
